@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/*
+ * Research Agent Runtime — design tokens
+ * Dark-first, observability-grade palette in OKLCH (perceptually uniform).
+ * Naming is semantic so utilities read cleanly: bg-surface, text-muted, border-line.
+ */
+@theme {
+  /* surfaces */
+  --color-canvas: oklch(0.16 0.006 264);
+  --color-surface: oklch(0.195 0.007 264);
+  --color-elevated: oklch(0.225 0.008 264);
+  --color-line: oklch(0.28 0.009 264);
+  --color-line-strong: oklch(0.36 0.011 264);
+
+  /* text */
+  --color-ink: oklch(0.97 0.003 264);
+  --color-muted: oklch(0.74 0.01 264);
+  --color-subtle: oklch(0.56 0.011 264);
+
+  /* brand accent — calm indigo, used with intent (not decoration) */
+  --color-accent: oklch(0.64 0.15 264);
+  --color-accent-strong: oklch(0.7 0.16 264);
+  --color-accent-soft: oklch(0.3 0.07 264);
+  --color-on-accent: oklch(0.99 0 0);
+
+  /* status — equal visual weight across hues */
+  --color-success: oklch(0.74 0.15 155);
+  --color-warning: oklch(0.8 0.14 80);
+  --color-danger: oklch(0.66 0.19 25);
+  --color-info: oklch(0.72 0.13 232);
+  --color-active: oklch(0.7 0.15 292);
+
+  /* status soft fills (for badge backgrounds) */
+  --color-success-soft: oklch(0.32 0.07 155);
+  --color-warning-soft: oklch(0.34 0.07 80);
+  --color-danger-soft: oklch(0.32 0.09 25);
+  --color-info-soft: oklch(0.32 0.07 232);
+  --color-active-soft: oklch(0.32 0.08 292);
+
+  /* type + shape */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+  --radius-card: 0.875rem;
+
+  /* motion */
+  --ease-fluid: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  /* subtle radial wash so flat dark surfaces feel like a product, not a void */
+  background-image:
+    radial-gradient(60rem 40rem at 80% -10%, oklch(0.64 0.15 264 / 0.06), transparent 60%),
+    radial-gradient(50rem 40rem at -10% 10%, oklch(0.7 0.15 292 / 0.05), transparent 55%);
+  background-attachment: fixed;
+}
+
+/* thin, unobtrusive scrollbars that match the surface palette */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-strong) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-line-strong);
+  border-radius: 9999px;
+}
+
+/* keyboard-only focus ring, never on mouse click (per a11y rules) */
+:focus-visible {
+  outline: 2px solid var(--color-accent-strong);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 1.4s var(--ease-fluid) infinite;
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.4s var(--ease-fluid) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

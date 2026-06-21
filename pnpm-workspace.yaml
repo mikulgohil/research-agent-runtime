@@ -1,0 +1,10 @@
+# Approve native post-install build scripts so `pnpm install` is clean and
+# reproducible for anyone cloning the repo (no interactive approve-builds step).
+#   - sharp: image optimization used by next/image
+#   - unrs-resolver: native resolver used by the ESLint flat config
+allowBuilds:
+  sharp: true
+  unrs-resolver: true
+onlyBuiltDependencies:
+  - sharp
+  - unrs-resolver
