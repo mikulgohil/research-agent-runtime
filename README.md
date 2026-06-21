@@ -16,16 +16,6 @@ a keyless local demo or real Claude + Supabase in production.
 
 ---
 
-## Screenshots
-
-> _Placeholders — drop images into `docs/screenshots/` and update these links._
-
-| Dashboard | Live run detail | Final report |
-|---|---|---|
-| ![Dashboard](docs/screenshots/dashboard.png) | ![Run detail](docs/screenshots/run-detail.png) | ![Report](docs/screenshots/report.png) |
-
----
-
 ## Why it exists
 
 Most "AI agent" demos are a prompt and a spinner. Real agentic products need the
