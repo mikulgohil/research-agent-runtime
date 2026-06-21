@@ -3,8 +3,10 @@
 #   - sharp: image optimization used by next/image
 #   - unrs-resolver: native resolver used by the ESLint flat config
 allowBuilds:
+  esbuild: true
   sharp: true
   unrs-resolver: true
 onlyBuiltDependencies:
   - sharp
   - unrs-resolver
+  - esbuild
